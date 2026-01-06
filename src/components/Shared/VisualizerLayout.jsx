@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ArrowLeft, Info, ChevronRight, ChevronLeft } from 'lucide-react';
+import { ROUTES } from '../../config/routes';
 
-export default function VisualizerLayout({ topic, setCurrentTopic, children }) {
+export default function VisualizerLayout({ topic, children }) {
   const [showConcepts, setShowConcepts] = useState(false);
 
   return (
@@ -9,13 +11,13 @@ export default function VisualizerLayout({ topic, setCurrentTopic, children }) {
       {/* Header */}
       <div className="mb-6 flex items-start justify-between flex-wrap gap-4">
         <div className="flex-1 min-w-[300px]">
-          <button
-            onClick={() => setCurrentTopic('home')}
+          <Link
+            to={ROUTES.HOME}
             className="flex items-center gap-2 text-blue-300 hover:text-blue-200 transition mb-4"
           >
             <ArrowLeft size={20} />
             Back to Home
-          </button>
+          </Link>
           <div className="flex items-center gap-4">
             <div className={`w-12 h-12 bg-gradient-to-br ${topic.color} rounded-lg flex items-center justify-center text-2xl`}>
               {topic.icon}

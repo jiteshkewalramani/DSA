@@ -1,4 +1,4 @@
-# DSA_Visualizer
+# DSA Visualizer
 
 Interactive Data Structures & Algorithms visualizer built with React + Tailwind.  
 Provides visual demos, pseudo-code panels, and interactive controls for common DS & algorithms.
