@@ -770,34 +770,34 @@ export default function LearningSection({ learningContent }) {
   return (
     <div>
       {/* Header Section */}
-      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-b border-slate-700 px-6 py-8 mb-8">
+      <div className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border-b border-slate-700 px-4 md:px-6 lg:px-8 py-6 md:py-8 mb-6 md:mb-8">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold text-white mb-2 flex items-center gap-3">
-            <BookOpen className="text-blue-400" size={36} />
+          <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-2 flex items-center gap-2 md:gap-3">
+            <BookOpen className="text-blue-400" size={28} md-size={32} lg-size={36} />
             Complete Learning Guide
           </h1>
-          <p className="text-slate-300 text-lg">Master the concepts with comprehensive theory and examples</p>
+          <p className="text-slate-300 text-sm md:text-base lg:text-lg">Master the concepts with comprehensive theory and examples</p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Navigation Tabs */}
-        <div className="mb-8">
-          <div className="flex flex-wrap gap-3">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
+        {/* Navigation Tabs - Horizontal scrollable on mobile */}
+        <div className="mb-6 md:mb-8">
+          <div className="flex md:flex-wrap gap-2 md:gap-3 overflow-x-auto pb-2 md:pb-0 scrollbar-thin">
             {sections.map(section => {
               const Icon = section.icon;
               return (
                 <button
                   key={section.id}
                   onClick={() => setActiveSection(section.id)}
-                  className={`px-5 py-3 rounded-lg flex items-center gap-2.5 transition-all font-medium ${
+                  className={`flex-shrink-0 px-4 md:px-5 py-2.5 md:py-3 rounded-lg flex items-center gap-2 md:gap-2.5 transition-all font-medium text-sm md:text-base ${
                     activeSection === section.id
-                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30 scale-105'
+                      ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg shadow-blue-500/30 md:scale-105'
                       : 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white border border-slate-700'
                   }`}
                 >
-                  <Icon size={20} />
-                  <span>{section.label}</span>
+                  <Icon size={18} className="md:w-5 md:h-5" />
+                  <span className="whitespace-nowrap">{section.label}</span>
                 </button>
               );
             })}
@@ -805,7 +805,7 @@ export default function LearningSection({ learningContent }) {
         </div>
 
         {/* Content Area */}
-        <div className="bg-slate-900/50 rounded-xl p-8 border border-slate-700 shadow-2xl">
+        <div className="bg-slate-900/50 rounded-lg md:rounded-xl p-4 md:p-6 lg:p-8 border border-slate-700 shadow-2xl mb-6 md:mb-8">
           {renderSection()}
         </div>
       </div>
