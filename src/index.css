@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme transition for smooth switching */
+* {
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
 @keyframes slideIn {
   from {
     opacity: 0;
@@ -13,10 +18,45 @@
   }
 }
 
-/* Custom scrollbar for horizontal navigation */
-.scrollbar-thin {
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Custom scrollbar for horizontal navigation - Dark mode */
+.dark .scrollbar-thin {
   scrollbar-width: thin;
   scrollbar-color: rgb(71 85 105) rgb(30 41 59);
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-track {
+  background: rgb(30 41 59);
+  border-radius: 3px;
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgb(71 85 105);
+  border-radius: 3px;
+}
+
+.dark .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgb(100 116 139);
+}
+
+/* Custom scrollbar for horizontal navigation - Light mode */
+.scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(148 163 184) rgb(226 232 240);
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -24,12 +64,12 @@
 }
 
 .scrollbar-thin::-webkit-scrollbar-track {
-  background: rgb(30 41 59);
+  background: rgb(226 232 240);
   border-radius: 3px;
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgb(71 85 105);
+  background: rgb(148 163 184);
   border-radius: 3px;
 }
 

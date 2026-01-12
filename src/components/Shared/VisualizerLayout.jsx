@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Info, ChevronRight, ChevronLeft } from 'lucide-react';
+import ThemeToggle from './ThemeToggle';
 
 export default function VisualizerLayout({ topic, children, hideConceptsButton = false }) {
   const [showConcepts, setShowConcepts] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       {/* Header */}
-      <div className="bg-slate-800/50 border-b border-slate-700 px-4 md:px-6 lg:px-8 py-4 md:py-6 mb-6 md:mb-8">
+      <div className="bg-white/50 dark:bg-slate-800/50 border-b border-slate-200 dark:border-slate-700 px-4 md:px-6 lg:px-8 py-4 md:py-6 mb-6 md:mb-8">
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between flex-wrap gap-3 md:gap-4">
             <div className="flex items-center gap-3 md:gap-4">
@@ -15,21 +16,24 @@ export default function VisualizerLayout({ topic, children, hideConceptsButton =
                 {topic.icon}
               </div>
               <div>
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-0.5 md:mb-1">{topic.name}</h1>
-                <p className="text-slate-400 text-sm md:text-base lg:text-lg">{topic.description}</p>
+                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 dark:text-white mb-0.5 md:mb-1">{topic.name}</h1>
+                <p className="text-slate-500 dark:text-slate-400 text-sm md:text-base lg:text-lg">{topic.description}</p>
               </div>
             </div>
-            {!hideConceptsButton && (
-              <button
-                onClick={() => setShowConcepts(!showConcepts)}
-                className="flex items-center gap-1.5 md:gap-2 bg-slate-700 hover:bg-slate-600 text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg transition-colors shadow-md text-sm md:text-base"
-              >
-                <Info size={16} className="md:w-[18px] md:h-[18px]" />
-                <span className="hidden sm:inline">{showConcepts ? 'Hide' : 'Show'} Concepts</span>
-                <span className="sm:hidden">{showConcepts ? 'Hide' : 'Show'}</span>
-                {showConcepts ? <ChevronLeft size={16} className="md:w-[18px] md:h-[18px]" /> : <ChevronRight size={16} className="md:w-[18px] md:h-[18px]" />}
-              </button>
-            )}
+            <div className="flex items-center gap-2 md:gap-3">
+              {!hideConceptsButton && (
+                <button
+                  onClick={() => setShowConcepts(!showConcepts)}
+                  className="flex items-center gap-1.5 md:gap-2 bg-slate-200 dark:bg-slate-700 hover:bg-slate-300 dark:hover:bg-slate-600 text-slate-700 dark:text-white px-3 md:px-5 py-2 md:py-2.5 rounded-lg transition-colors shadow-md text-sm md:text-base"
+                >
+                  <Info size={16} className="md:w-[18px] md:h-[18px]" />
+                  <span className="hidden sm:inline">{showConcepts ? 'Hide' : 'Show'} Concepts</span>
+                  <span className="sm:hidden">{showConcepts ? 'Hide' : 'Show'}</span>
+                  {showConcepts ? <ChevronLeft size={16} className="md:w-[18px] md:h-[18px]" /> : <ChevronRight size={16} className="md:w-[18px] md:h-[18px]" />}
+                </button>
+              )}
+              <ThemeToggle />
+            </div>
           </div>
         </div>
       </div>
@@ -37,13 +41,13 @@ export default function VisualizerLayout({ topic, children, hideConceptsButton =
       {/* Concepts Panel - Collapsible */}
       {showConcepts && (
         <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 mb-6 md:mb-8">
-          <div className="bg-slate-800 rounded-lg p-4 md:p-6 border border-slate-700 animate-[slideDown_0.3s_ease-out]">
-            <h3 className="text-lg md:text-xl font-bold text-white mb-3 md:mb-4 flex items-center gap-2">
-              <Info className="text-green-400 w-5 md:w-[22px] h-5 md:h-[22px]" />
+          <div className="bg-white dark:bg-slate-800 rounded-lg p-4 md:p-6 border border-slate-200 dark:border-slate-700 animate-[slideDown_0.3s_ease-out] shadow-md">
+            <h3 className="text-lg md:text-xl font-bold text-slate-800 dark:text-white mb-3 md:mb-4 flex items-center gap-2">
+              <Info className="text-green-500 dark:text-green-400 w-5 md:w-[22px] h-5 md:h-[22px]" />
               Key Concepts & Complexity
             </h3>
-            <div className="bg-slate-900 rounded-lg p-3 md:p-5 overflow-auto max-h-80 md:max-h-96">
-              <pre className="text-xs md:text-sm text-slate-300 whitespace-pre-wrap font-sans leading-relaxed">
+            <div className="bg-slate-100 dark:bg-slate-900 rounded-lg p-3 md:p-5 overflow-auto max-h-80 md:max-h-96">
+              <pre className="text-xs md:text-sm text-slate-600 dark:text-slate-300 whitespace-pre-wrap font-sans leading-relaxed">
                 {topic.concept}
               </pre>
             </div>
@@ -58,3 +62,4 @@ export default function VisualizerLayout({ topic, children, hideConceptsButton =
     </div>
   );
 }
+
